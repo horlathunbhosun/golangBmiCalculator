@@ -3,32 +3,50 @@ package main
 import (
 	"fmt"
 	"github.com/horlathunbhosun/bmicalculator/info"
-	"strconv"
-	"strings"
+	"math/rand"
 )
 
 func main() {
 	//Output information
-	fmt.Println(info.MainText)
-	fmt.Println(info.Seperator)
-	//Prompt for user input(weight + height)
+	info.WelcomeText()
 
-	fmt.Print(info.WeightPrompt)
-	weightInput, _ := reader.ReadString('\n')
+	weight, height := getUserMetrics()
+	bmi := calculateBMI(weight, height)
 
-	fmt.Print(info.HeightPrompt)
-	heightInput, _ := reader.ReadString('\n')
-	//Save that user input in variables
-	weightInput = strings.Replace(weightInput, "\n", "", -1)
-	heightInput = strings.Replace(heightInput, "\n", "", -1)
+	printBMI(bmi)
+	//a, b := generateRandomNumber()
+	//
+	//sum := add(a, b)
+	//
+	//printNumber(sum)
 
-	weight, _ := strconv.ParseFloat(weightInput, 64)
-	height, _ := strconv.ParseFloat(heightInput, 64)
+}
 
-	//calculate the BMI (weight/ (height * height))
-	bmi := weight / (height * height)
+func calculateBMI(weight float64, height float64) float64 {
+	return weight / (height * height)
+}
 
-	fmt.Printf("The BMI is %.2f", bmi)
-	//Output the calculated BMI
+//func returnReadline() (dat,string) {
+//	dat, _ = reader.ReadString('\n')
+//	 return
+//}
 
+func add(num1 int, num2 int) int {
+	return num1 + num2
+}
+
+func printNumber(num int) {
+	fmt.Printf("The number is %v", num)
+}
+
+//func genarateRandomNumber() (int, int) {
+//	randomNumber1 := rand.Intn(10)
+//	randomNumber2 := rand.Intn(9)
+//	return randomNumber1, randomNumber2
+//}
+
+func generateRandomNumber() (r1 int, r2 int) {
+	r1 = rand.Intn(10)
+	r2 = rand.Intn(9)
+	return
 }
